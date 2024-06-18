@@ -25,7 +25,7 @@ return (
                     <p className="text-xs text-right mb-1">{formatDate(post.timestamp)}</p>
                     <Link to={`/posts/${post._id}`} className="text-3xl text-blue-700 hover:text-blue-800">{post.title}</Link>
                     <img 
-                        src={`https://dazzling-elemental-airplane.glitch.me/public/images/${post.img}`} 
+                        src={`https://dazzling-elemental-airplane.glitch.me/images/${post.img}`} 
                         alt={post.title} 
                         className="w-full mt-4 rounded-md mb-4"
                     />
