@@ -8,7 +8,7 @@ export default function Post() {
     const [comments, setComments] = useState([]);
     let { postId } = useParams();
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${postId}`, {                
+        fetch(`https://dazzling-elemental-airplane.glitch.me/posts/${postId}`, {                
             mode: "cors",
             dataType: 'json',
          })
@@ -20,7 +20,7 @@ export default function Post() {
     }, [postId]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${postId}/comments`, {                
+        fetch(`https://dazzling-elemental-airplane.glitch.me/posts/${postId}/comments`, {                
             mode: "cors",
             dataType: 'json',
          })
