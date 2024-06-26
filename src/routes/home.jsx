@@ -4,6 +4,7 @@ import { formatDate } from '../utils/formatDate'
 
 export default function Home() {
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetch("https://dazzling-elemental-airplane.glitch.me/posts", {                
@@ -13,13 +14,19 @@ export default function Home() {
             .then((response) => (response.json()))
             .then((data) => {
                 setPosts(data)
+                setLoading(false)
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                console.error(error)
+                setLoading(false)
+
+            });
     }, []);
 
 return (
      <div className="flex justify-center">
         <ul className="flex flex-col justify-center items-center gap-5 max-w-screen-xl">
+            {loading && <p>Loading...</p>}
             {posts.map((post) => (
                 <li key={post._id} className="shadow-md py-5 px-5 w-1/2">
                     <p className="text-xs text-right mb-1">{formatDate(post.timestamp)}</p>
@@ -27,7 +34,7 @@ return (
                     <img 
                         src={post.img} 
                         alt={post.title} 
-                        className="w-full mt-4 rounded-md mb-4"
+                        className="w-full max-h-72 object-cover mt-4 rounded-md mb-4"
                     />
                     <p className="line-clamp-5 mb-3">{post.content}</p>
                     <p className="italic mb-1">by {post.user.username}</p>
